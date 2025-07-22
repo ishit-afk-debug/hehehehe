@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Romantic Home - Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Sacramento&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: 'Dancing Script', cursive;
+      background: 
+        /* Romantic pattern overlay */
+        radial-gradient(circle at 15% 25%, rgba(255, 182, 193, 0.15) 2px, transparent 2px),
+        radial-gradient(circle at 85% 75%, rgba(255, 192, 203, 0.12) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 45% 15%, rgba(255, 228, 225, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 75% 45%, rgba(255, 105, 180, 0.08) 1px, transparent 1px),
+        /* Soft bokeh effects */
+        radial-gradient(ellipse at 20% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 192, 203, 0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 40% 40%, rgba(255, 228, 225, 0.2) 0%, transparent 70%),
+        radial-gradient(ellipse at 60% 80%, rgba(255, 105, 180, 0.15) 0%, transparent 50%),
+        /* Main romantic gradient */
+        linear-gradient(135deg, 
+          #ffeef0 0%, 
+          #ffe4e6 15%, 
+          #ffd6cc 30%, 
+          #ffb3ba 50%, 
+          #ff9aa2 70%, 
+          #ff8a95 85%, 
+          #ff7a8a 100%);
+      background-size: 
+        80px 80px,
+        60px 60px,
+        40px 40px,
+        50px 50px,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%;
+      animation: backgroundShimmer 12s ease-in-out infinite alternate;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    @keyframes backgroundShimmer {
+      0% { 
+        filter: brightness(1) saturate(1) hue-rotate(0deg);
+        background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+      }
+      50% {
+        filter: brightness(1.03) saturate(1.05) hue-rotate(2deg);
+        background-position: 10px 10px, -5px -5px, 15px -10px, -8px 12px, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+      }
+      100% { 
+        filter: brightness(1.05) saturate(1.1) hue-rotate(-2deg);
+        background-position: 20px 20px, -10px -10px, 30px -20px, -15px 25px, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+      }
+    }
+
+    /* Floating hearts background */
+    .floating-hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .floating-heart {
+      position: absolute;
+      color: rgba(255, 182, 193, 0.4);
+      font-size: 1.5em;
+      animation: floatUp 10s linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100px) rotate(360deg) scale(1.2);
+      }
+    }
+
+    /* Main content container */
+    .main-container {
+      text-align: center;
+      z-index: 10;
+      position: relative;
+    }
+
+    /* Photo container with cute styling */
+    .photo-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 30px;
+    }
+
+    .her-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 105, 180, 0.6);
+      box-shadow: 
+        0 0 30px rgba(255, 105, 180, 0.4),
+        0 0 60px rgba(255, 182, 193, 0.3),
+        0 0 90px rgba(255, 228, 225, 0.2);
+      object-fit: cover;
+      animation: photoGlow 3s ease-in-out infinite alternate;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .her-photo:hover {
+      transform: scale(1.1);
+      box-shadow: 
+        0 0 50px rgba(255, 105, 180, 0.8),
+        0 0 100px rgba(255, 182, 193, 0.6),
+        0 0 150px rgba(255, 228, 225, 0.4);
+      animation: photoExcited 0.5s ease-in-out infinite;
+    }
+    
+    @keyframes photoExcited {
+      0%, 100% { transform: scale(1.1) rotate(0deg); }
+      50% { transform: scale(1.15) rotate(1deg); }
+    }
+
+    @keyframes photoGlow {
+      from {
+        box-shadow: 
+          0 0 30px rgba(255, 105, 180, 0.4),
+          0 0 60px rgba(255, 182, 193, 0.3),
+          0 0 90px rgba(255, 228, 225, 0.2);
+      }
+      to {
+        box-shadow: 
+          0 0 40px rgba(255, 105, 180, 0.6),
+          0 0 80px rgba(255, 182, 193, 0.4),
+          0 0 120px rgba(255, 228, 225, 0.3);
+      }
+    }
+
+    /* Kissing bunnies around the photo */
+    .kissing-bunny {
+      position: absolute;
+      font-size: 2.5rem;
+      z-index: 15;
+      animation-duration: 4s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .kissing-bunny:hover {
+      transform: scale(1.3) !important;
+      filter: brightness(1.2);
+    }
+    
+    /* Bunny speech bubbles */
+    .speech-bubble {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      padding: 8px 12px;
+      font-size: 1.2rem;
+      color: #FF69B4;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+      opacity: 0;
+      transform: scale(0.5);
+      animation: bubbleAppear 2s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 20;
+    }
+    
+    .speech-bubble::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border: 8px solid transparent;
+    }
+    
+    .bubble-top {
+      top: -45px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.5);
+      animation-delay: 0.5s;
+    }
+    
+    .bubble-top::after {
+      top: 100%;
+      left: 50%;
+      margin-left: -8px;
+      border-top-color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .bubble-left {
+      top: 50%;
+      right: 100%;
+      margin-right: 10px;
+      transform: translateY(-50%) scale(0.5);
+      animation-delay: 1.5s;
+    }
+    
+    .bubble-left::after {
+      top: 50%;
+      left: 100%;
+      margin-top: -8px;
+      border-left-color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .bubble-right {
+      top: 50%;
+      left: 100%;
+      margin-left: 10px;
+      transform: translateY(-50%) scale(0.5);
+      animation-delay: 2.5s;
+    }
+    
+    .bubble-right::after {
+      top: 50%;
+      right: 100%;
+      margin-top: -8px;
+      border-right-color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .bubble-bottom {
+      bottom: -45px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.5);
+      animation-delay: 3.5s;
+    }
+    
+    .bubble-bottom::after {
+      bottom: 100%;
+      left: 50%;
+      margin-left: -8px;
+      border-bottom-color: rgba(255, 255, 255, 0.9);
+    }
+    
+    @keyframes bubbleAppear {
+      0%, 70%, 100% { opacity: 0; transform: scale(0.5); }
+      10%, 60% { opacity: 1; transform: scale(1); }
+    }
+
+    .bunny-top {
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-name: bunnyKissTop;
+      animation-delay: 0s;
+    }
+
+    .bunny-left {
+      top: 50%;
+      left: -30px;
+      transform: translateY(-50%);
+      animation-name: bunnyKissLeft;
+      animation-delay: 1s;
+    }
+
+    .bunny-right {
+      top: 50%;
+      right: -30px;
+      transform: translateY(-50%);
+      animation-name: bunnyKissRight;
+      animation-delay: 2s;
+    }
+
+    .bunny-bottom {
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation-name: bunnyKissBottom;
+      animation-delay: 3s;
+    }
+
+    @keyframes bunnyKissTop {
+      0%, 70%, 100% { 
+        transform: translateX(-50%) translateY(0px) scale(1);
+        opacity: 0.8;
+      }
+      15%, 55% { 
+        transform: translateX(-50%) translateY(15px) scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bunnyKissLeft {
+      0%, 70%, 100% { 
+        transform: translateY(-50%) translateX(0px) scale(1);
+        opacity: 0.8;
+      }
+      15%, 55% { 
+        transform: translateY(-50%) translateX(15px) scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bunnyKissRight {
+      0%, 70%, 100% { 
+        transform: translateY(-50%) translateX(0px) scale(1);
+        opacity: 0.8;
+      }
+      15%, 55% { 
+        transform: translateY(-50%) translateX(-15px) scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bunnyKissBottom {
+      0%, 70%, 100% { 
+        transform: translateX(-50%) translateY(0px) scale(1);
+        opacity: 0.8;
+      }
+      15%, 55% { 
+        transform: translateX(-50%) translateY(-15px) scale(1.2);
+        opacity: 1;
+      }
+    }
+
+    .welcome-title {
+      font-family: 'Sacramento', cursive;
+      font-size: 4rem;
+      color: #FF69B4;
+      text-shadow: 
+        0 0 20px rgba(255, 105, 180, 0.8),
+        0 0 40px rgba(255, 182, 193, 0.6),
+        0 0 60px rgba(255, 228, 225, 0.4);
+      margin-bottom: 2rem;
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      from {
+        text-shadow: 
+          0 0 20px rgba(255, 105, 180, 0.8),
+          0 0 40px rgba(255, 182, 193, 0.6),
+          0 0 60px rgba(255, 228, 225, 0.4);
+      }
+      to {
+        text-shadow: 
+          0 0 30px rgba(255, 105, 180, 1),
+          0 0 60px rgba(255, 182, 193, 0.8),
+          0 0 90px rgba(255, 228, 225, 0.6);
+      }
+    }
+
+    /* Heart-themed button */
+    .heart-button {
+      position: relative;
+      background: linear-gradient(45deg, #ff6b9d, #ff8fab, #ffb3c1);
+      border: none;
+      padding: 20px 40px;
+      border-radius: 50px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      box-shadow: 
+        0 8px 25px rgba(255, 107, 157, 0.4),
+        0 0 0 0 rgba(255, 107, 157, 0.7);
+      transition: all 0.3s ease;
+      animation: heartbeat 2s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    .heart-button::before {
+      content: '♥';
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5em;
+      animation: heartPulse 1.5s ease-in-out infinite;
+    }
+
+    .heart-button::after {
+      content: '♥';
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5em;
+      animation: heartPulse 1.5s ease-in-out infinite 0.5s;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    @keyframes heartPulse {
+      0%, 100% { opacity: 0.7; transform: translateY(-50%) scale(1); }
+      50% { opacity: 1; transform: translateY(-50%) scale(1.2); }
+    }
+
+    .heart-button:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 
+        0 12px 35px rgba(255, 107, 157, 0.6),
+        0 0 0 10px rgba(255, 107, 157, 0.2);
+      background: linear-gradient(45deg, #ff5a8a, #ff7ba3, #ffa3b8);
+    }
+
+    .heart-button:active {
+      transform: translateY(-1px) scale(1.02);
+    }
+
+    /* Sparkle effects */
+    .sparkles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: radial-gradient(circle, #fff 0%, #ffb6c1 70%, transparent 100%);
+      border-radius: 50%;
+      animation: sparkleFloat 3s ease-out infinite;
+      opacity: 0;
+    }
+
+    @keyframes sparkleFloat {
+      0% { 
+        opacity: 0; 
+        transform: scale(0.3) translateY(0) rotate(0deg); 
+      }
+      15% { 
+        opacity: 1; 
+        transform: scale(1) translateY(-10px) rotate(90deg);
+      }
+      85% { 
+        opacity: 1; 
+        transform: scale(1.1) translateY(-50px) rotate(270deg);
+      }
+      100% { 
+        opacity: 0; 
+        transform: scale(1.5) translateY(-80px) rotate(360deg);
+      }
+    }
+
+    /* Floating rose petals */
+    .rose-petals {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+    
+    .rose-petal {
+      position: absolute;
+      font-size: 1.5rem;
+      color: rgba(255, 182, 193, 0.7);
+      animation: petalFall 8s linear infinite;
+      opacity: 0;
+    }
+    
+    @keyframes petalFall {
+      0% {
+        opacity: 0;
+        transform: translateY(-100px) rotate(0deg);
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+    
+    /* Twinkling stars */
+    .twinkling-stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+    }
+    
+    .star {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      animation: twinkle 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes twinkle {
+      0% { opacity: 0.3; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+    
+    /* Heart burst effect */
+    .heart-burst {
+      position: absolute;
+      pointer-events: none;
+      z-index: 25;
+    }
+    
+    .burst-heart {
+      position: absolute;
+      color: #FF69B4;
+      font-size: 1.5rem;
+      animation: heartBurst 1s ease-out forwards;
+    }
+    
+    @keyframes heartBurst {
+      0% {
+        opacity: 1;
+        transform: scale(0.5) translate(0, 0);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.5) translate(var(--dx), var(--dy));
+      }
+    }
+    
+    /* Rotating heart border */
+    .heart-border {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 8;
+    }
+    
+    .rotating-heart {
+      position: absolute;
+      color: rgba(255, 105, 180, 0.6);
+      font-size: 1rem;
+      animation: rotateAroundPhoto 6s linear infinite;
+    }
+    
+    @keyframes rotateAroundPhoto {
+      0% { transform: rotate(0deg) translateX(120px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(120px) rotate(-360deg); }
+    }
+    
+    /* Music toggle button */
+    .music-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(45deg, #ff6b9d, #ff8fab);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 25px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+      transition: all 0.3s ease;
+      z-index: 100;
+      opacity: 0.8;
+    }
+    
+    .music-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+      opacity: 1;
+    }
+    
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .welcome-title {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .heart-button {
+        padding: 15px 30px;
+        font-size: 1.5rem;
+      }
+      
+      .her-photo {
+        width: 150px;
+        height: 150px;
+      }
+      
+      .kissing-bunny {
+        font-size: 2rem;
+      }
+      
+      body {
+        background-size: 
+          60px 60px,
+          45px 45px,
+          30px 30px,
+          40px 40px,
+          100% 100%,
+          100% 100%,
+          100% 100%,
+          100% 100%,
+          100% 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .welcome-title {
+        font-size: 2rem;
+      }
+      
+      .heart-button {
+        padding: 12px 25px;
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="music-toggle" id="musicToggle" onclick="toggleBackgroundMusic()">🎵 Music OFF</button>
+  
+  <div class="floating-hearts" id="floating-hearts"></div>
+  <div class="rose-petals" id="rose-petals"></div>
+  <div class="twinkling-stars" id="twinkling-stars"></div>
+  <div class="sparkles" id="sparkles"></div>
+  
+  <div class="main-container">
+    <h1 class="welcome-title">Welcome</h1>
+    
+    <div class="photo-container">
+      <div class="heart-border">
+        <div class="rotating-heart" style="--angle: 0deg;">💕</div>
+        <div class="rotating-heart" style="--angle: 60deg; animation-delay: -1s;">💖</div>
+        <div class="rotating-heart" style="--angle: 120deg; animation-delay: -2s;">💕</div>
+        <div class="rotating-heart" style="--angle: 180deg; animation-delay: -3s;">💖</div>
+        <div class="rotating-heart" style="--angle: 240deg; animation-delay: -4s;">💕</div>
+        <div class="rotating-heart" style="--angle: 300deg; animation-delay: -5s;">💖</div>
+      </div>
+      <img src="herpic.jpg" alt="Beautiful You" class="her-photo" id="herPhoto">
+      <div class="kissing-bunny bunny-top">🐰
+        <div class="speech-bubble bubble-top">💕</div>
+      </div>
+      <div class="kissing-bunny bunny-left">🐇
+        <div class="speech-bubble bubble-left">😘</div>
+      </div>
+      <div class="kissing-bunny bunny-right">🐰
+        <div class="speech-bubble bubble-right">🥰</div>
+      </div>
+      <div class="kissing-bunny bunny-bottom">🐇
+        <div class="speech-bubble bubble-bottom">💖</div>
+      </div>
+    </div>
+    
+    <button class="heart-button" onclick="goToSecondPage()" onmouseenter="initAudio(); playButtonHoverSound();">Click Here</button>
+  </div>
+
+  <script>
+    // Audio Context for cute sound effects
+    let audioContext;
+    let backgroundMusic = null;
+    let musicPlaying = false;
+    
+    // Initialize audio context (user interaction required)
+    function initAudio() {
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        startBackgroundMusic();
+      }
+    }
+    
+    // Enhanced romantic background music generator
+    function startBackgroundMusic() {
+      if (!audioContext || musicPlaying) return;
+      
+      musicPlaying = true;
+      
+      // Beautiful romantic melody with arpeggios
+      const melodyNotes = [
+        // "Clair de Lune" inspired romantic melody
+        [523.25, 587.33, 659.25, 698.46], // C5, D5, E5, F5
+        [659.25, 587.33, 523.25, 493.88], // E5, D5, C5, B4
+        [440.00, 493.88, 523.25, 587.33], // A4, B4, C5, D5
+        [523.25, 493.88, 440.00, 392.00], // C5, B4, A4, G4
+        [392.00, 440.00, 493.88, 523.25], // G4, A4, B4, C5
+        [587.33, 523.25, 493.88, 440.00], // D5, C5, B4, A4
+        [493.88, 440.00, 392.00, 349.23], // B4, A4, G4, F4
+        [392.00, 440.00, 493.88, 523.25]  // G4, A4, B4, C5
+      ];
+      
+      // Soft harmonic base chords
+      const baseChords = [
+        [130.81, 164.81, 196.00], // C3, E3, G3
+        [110.00, 130.81, 164.81], // A2, C3, E3
+        [87.31, 110.00, 130.81],  // F2, A2, C3
+        [98.00, 123.47, 146.83],  // G2, B2, D3
+        [130.81, 164.81, 196.00], // C3, E3, G3
+        [110.00, 130.81, 164.81], // A2, C3, E3
+        [87.31, 110.00, 130.81],  // F2, A2, C3
+        [98.00, 123.47, 146.83]   // G2, B2, D3
+      ];
+      
+      let melodyIndex = 0;
+      let noteIndex = 0;
+      
+      function playMelodyNote() {
+        if (!audioContext || !musicPlaying) return;
+        
+        const currentMelody = melodyNotes[melodyIndex];
+        const currentChord = baseChords[melodyIndex];
+        
+        // Play melody note
+        const melodyOsc = audioContext.createOscillator();
+        const melodyGain = audioContext.createGain();
+        
+        melodyOsc.connect(melodyGain);
+        melodyGain.connect(audioContext.destination);
+        
+        melodyOsc.frequency.setValueAtTime(currentMelody[noteIndex], audioContext.currentTime);
+        melodyOsc.type = 'triangle'; // Warmer sound
+        
+        melodyGain.gain.setValueAtTime(0, audioContext.currentTime);
+        melodyGain.gain.linearRampToValueAtTime(0.015, audioContext.currentTime + 0.1);
+        melodyGain.gain.setValueAtTime(0.015, audioContext.currentTime + 0.8);
+        melodyGain.gain.linearRampToValueAtTime(0, audioContext.currentTime + 1);
+        
+        melodyOsc.start(audioContext.currentTime);
+        melodyOsc.stop(audioContext.currentTime + 1);
+        
+        // Play soft harmonic base (every 4th note)
+        if (noteIndex === 0) {
+          currentChord.forEach((freq, i) => {
+            const baseOsc = audioContext.createOscillator();
+            const baseGain = audioContext.createGain();
+            
+            baseOsc.connect(baseGain);
+            baseGain.connect(audioContext.destination);
+            
+            baseOsc.frequency.setValueAtTime(freq, audioContext.currentTime);
+            baseOsc.type = 'sine';
+            
+            baseGain.gain.setValueAtTime(0, audioContext.currentTime);
+            baseGain.gain.linearRampToValueAtTime(0.005, audioContext.currentTime + 0.5);
+            baseGain.gain.setValueAtTime(0.005, audioContext.currentTime + 3.5);
+            baseGain.gain.linearRampToValueAtTime(0, audioContext.currentTime + 4);
+            
+            baseOsc.start(audioContext.currentTime);
+            baseOsc.stop(audioContext.currentTime + 4);
+          });
+        }
+        
+        noteIndex = (noteIndex + 1) % currentMelody.length;
+        
+        if (noteIndex === 0) {
+          melodyIndex = (melodyIndex + 1) % melodyNotes.length;
+        }
+        
+        // Schedule next note
+        setTimeout(() => {
+          if (musicPlaying) playMelodyNote();
+        }, 1000); // 1 second per note
+      }
+      
+      // Add ambient pad sounds
+      function playAmbientPad() {
+        if (!audioContext || !musicPlaying) return;
+        
+        const padFreqs = [261.63, 329.63, 392.00, 523.25]; // C major chord spread
+        
+        padFreqs.forEach((freq, i) => {
+          const padOsc = audioContext.createOscillator();
+          const padGain = audioContext.createGain();
+          
+          padOsc.connect(padGain);
+          padGain.connect(audioContext.destination);
+          
+          padOsc.frequency.setValueAtTime(freq, audioContext.currentTime);
+          padOsc.type = 'sawtooth';
+          
+          // Very soft ambient volume
+          padGain.gain.setValueAtTime(0, audioContext.currentTime);
+          padGain.gain.linearRampToValueAtTime(0.003, audioContext.currentTime + 2);
+          padGain.gain.setValueAtTime(0.003, audioContext.currentTime + 14);
+          padGain.gain.linearRampToValueAtTime(0, audioContext.currentTime + 16);
+          
+          padOsc.start(audioContext.currentTime);
+          padOsc.stop(audioContext.currentTime + 16);
+        });
+        
+        // Schedule next pad
+        setTimeout(() => {
+          if (musicPlaying) playAmbientPad();
+        }, 16000);
+      }
+      
+      // Start the enhanced music
+      playMelodyNote();
+      playAmbientPad();
+    }
+    
+    // Toggle background music
+    function toggleBackgroundMusic() {
+      if (!audioContext) {
+        initAudio();
+        return;
+      }
+      
+      musicPlaying = !musicPlaying;
+      
+      if (musicPlaying) {
+        startBackgroundMusic();
+      }
+      
+      // Update button text
+      const musicButton = document.getElementById('musicToggle');
+      if (musicButton) {
+        musicButton.innerHTML = musicPlaying ? '🎵 Music ON' : '🎵 Music OFF';
+        musicButton.style.opacity = musicPlaying ? '1' : '0.6';
+      }
+    }
+    
+    // Cute sound effect functions
+    function playKissSound() {
+      if (!audioContext) return;
+      
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+      
+      gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.2);
+    }
+    
+    function playHeartBurstSound() {
+      if (!audioContext) return;
+      
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+          
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+          
+          oscillator.frequency.setValueAtTime(600 + i * 200, audioContext.currentTime);
+          oscillator.frequency.exponentialRampToValueAtTime(800 + i * 200, audioContext.currentTime + 0.1);
+          
+          gainNode.gain.setValueAtTime(0.05, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.3);
+          
+          oscillator.start(audioContext.currentTime);
+          oscillator.stop(audioContext.currentTime + 0.3);
+        }, i * 50);
+      }
+    }
+    
+    function playSparkleSound() {
+      if (!audioContext) return;
+      
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(1200, audioContext.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(2000, audioContext.currentTime + 0.1);
+      oscillator.frequency.exponentialRampToValueAtTime(800, audioContext.currentTime + 0.2);
+      
+      gainNode.gain.setValueAtTime(0.03, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.2);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.2);
+    }
+    
+    function playBunnyHopSound() {
+      if (!audioContext) return;
+      
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(500, audioContext.currentTime + 0.05);
+      oscillator.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.1);
+      
+      gainNode.gain.setValueAtTime(0.08, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.15);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.15);
+    }
+    
+    function playMagicalChime() {
+      if (!audioContext) return;
+      
+      const frequencies = [523.25, 659.25, 783.99]; // C, E, G notes
+      
+      frequencies.forEach((freq, i) => {
+        setTimeout(() => {
+          const oscillator = audioContext.createOscillator();
+          const gainNode = audioContext.createGain();
+          
+          oscillator.connect(gainNode);
+          gainNode.connect(audioContext.destination);
+          
+          oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
+          
+          gainNode.gain.setValueAtTime(0.04, audioContext.currentTime);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+          
+          oscillator.start(audioContext.currentTime);
+          oscillator.stop(audioContext.currentTime + 0.5);
+        }, i * 100);
+      });
+    }
+    
+    function playButtonHoverSound() {
+      if (!audioContext) return;
+      
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 0.1);
+      
+      gainNode.gain.setValueAtTime(0.02, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.1);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.1);
+    }
+    
+    // Create floating hearts
+    function createFloatingHeart() {
+      const heartsContainer = document.getElementById('floating-hearts');
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.innerHTML = '♥';
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDuration = (Math.random() * 4 + 8) + 's';
+      heart.style.animationDelay = Math.random() * 2 + 's';
+      heart.style.fontSize = (Math.random() * 0.8 + 1) + 'em';
+      
+      const colors = [
+        'rgba(255, 182, 193, 0.4)',
+        'rgba(255, 192, 203, 0.3)',
+        'rgba(255, 228, 225, 0.5)',
+        'rgba(255, 105, 180, 0.3)'
+      ];
+      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+      
+      heartsContainer.appendChild(heart);
+      
+      setTimeout(() => {
+        if (heart.parentNode) {
+          heart.parentNode.removeChild(heart);
+        }
+      }, 12000);
+    }
+
+    // Create sparkles
+    function createSparkle() {
+      const sparklesContainer = document.getElementById('sparkles');
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = Math.random() * 100 + '%';
+      sparkle.style.top = Math.random() * 100 + '%';
+      sparkle.style.animationDelay = Math.random() * 2 + 's';
+      
+      sparklesContainer.appendChild(sparkle);
+      
+      // Occasional sparkle sound
+      if (Math.random() < 0.3 && audioContext) {
+        setTimeout(() => playSparkleSound(), Math.random() * 1000);
+      }
+      
+      setTimeout(() => {
+        if (sparkle.parentNode) {
+          sparkle.parentNode.removeChild(sparkle);
+        }
+      }, 3000);
+    }
+
+    // Start animations
+    setInterval(createFloatingHeart, 2000);
+    setInterval(createSparkle, 1500);
+
+    // Navigation function
+    function goToSecondPage() {
+      initAudio();
+      playMagicalChime();
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 300);
+    }
+
+    // Create floating rose petals
+    function createRosePetal() {
+      const petalsContainer = document.getElementById('rose-petals');
+      const petal = document.createElement('div');
+      petal.className = 'rose-petal';
+      const petals = ['🌹', '🌸', '🌺', '🌷'];
+      petal.innerHTML = petals[Math.floor(Math.random() * petals.length)];
+      petal.style.left = Math.random() * 100 + '%';
+      petal.style.animationDuration = (Math.random() * 3 + 6) + 's';
+      petal.style.animationDelay = Math.random() * 2 + 's';
+      
+      petalsContainer.appendChild(petal);
+      
+      setTimeout(() => {
+        if (petal.parentNode) {
+          petal.parentNode.removeChild(petal);
+        }
+      }, 10000);
+    }
+    
+    // Create twinkling stars
+    function createTwinklingStar() {
+      const starsContainer = document.getElementById('twinkling-stars');
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.innerHTML = '✨';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      
+      starsContainer.appendChild(star);
+      
+      setTimeout(() => {
+        if (star.parentNode) {
+          star.parentNode.removeChild(star);
+        }
+      }, 4000);
+    }
+    
+    // Heart burst effect on photo click
+    function createHeartBurst(x, y) {
+      const burstContainer = document.createElement('div');
+      burstContainer.className = 'heart-burst';
+      burstContainer.style.left = x + 'px';
+      burstContainer.style.top = y + 'px';
+      
+      for (let i = 0; i < 8; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'burst-heart';
+        heart.innerHTML = '💕';
+        
+        const angle = (i * 45) * Math.PI / 180;
+        const distance = 50 + Math.random() * 30;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+        
+        heart.style.setProperty('--dx', dx + 'px');
+        heart.style.setProperty('--dy', dy + 'px');
+        heart.style.animationDelay = (i * 0.1) + 's';
+        
+        burstContainer.appendChild(heart);
+      }
+      
+      document.body.appendChild(burstContainer);
+      
+      setTimeout(() => {
+        if (burstContainer.parentNode) {
+          burstContainer.parentNode.removeChild(burstContainer);
+        }
+      }, 1500);
+    }
+    
+    // Photo click handler
+    document.getElementById('herPhoto').addEventListener('click', function(e) {
+      initAudio();
+      playHeartBurstSound();
+      playMagicalChime();
+      
+      const rect = this.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+      createHeartBurst(x, y);
+      
+      // Make bunnies excited
+      const bunnies = document.querySelectorAll('.kissing-bunny');
+      bunnies.forEach(bunny => {
+        bunny.style.animationDuration = '1s';
+        setTimeout(() => {
+          bunny.style.animationDuration = '4s';
+        }, 2000);
+      });
+    });
+    
+    // Handle photo error with cute placeholder
+    document.getElementById('herPhoto').onerror = function() {
+      this.style.display = 'none';
+      const container = document.querySelector('.photo-container');
+      const placeholder = document.createElement('div');
+      placeholder.style.cssText = `
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 5px solid rgba(255, 105, 180, 0.6);
+        background: linear-gradient(45deg, rgba(255, 182, 193, 0.3), rgba(255, 192, 203, 0.3));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        animation: photoGlow 3s ease-in-out infinite alternate;
+        cursor: pointer;
+      `;
+      placeholder.innerHTML = '💕';
+      placeholder.addEventListener('click', function(e) {
+        initAudio();
+        playHeartBurstSound();
+        playMagicalChime();
+        const rect = this.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        createHeartBurst(x, y);
+      });
+      container.insertBefore(placeholder, container.firstChild);
+    };
+
+    // Start all cute animations
+    setInterval(createRosePetal, 2000);
+    setInterval(createTwinklingStar, 3000);
+    
+    // Initial effects
+    for (let i = 0; i < 5; i++) {
+      setTimeout(createSparkle, i * 300);
+      setTimeout(createRosePetal, i * 500);
+      setTimeout(createTwinklingStar, i * 800);
+    }
+    
+    // Bunny click interactions
+    document.querySelectorAll('.kissing-bunny').forEach(bunny => {
+      bunny.addEventListener('click', function() {
+        initAudio();
+        playKissSound();
+        playBunnyHopSound();
+        
+        this.style.transform += ' scale(1.5)';
+        setTimeout(() => {
+          this.style.transform = this.style.transform.replace(' scale(1.5)', '');
+        }, 300);
+        
+        // Create mini heart burst from bunny
+        const rect = this.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        
+        const miniHeart = document.createElement('div');
+        miniHeart.innerHTML = '💕';
+        miniHeart.style.cssText = `
+          position: fixed;
+          left: ${x}px;
+          top: ${y}px;
+          font-size: 1.5rem;
+          pointer-events: none;
+          z-index: 30;
+          animation: heartBurst 1s ease-out forwards;
+        `;
+        miniHeart.style.setProperty('--dx', '0px');
+        miniHeart.style.setProperty('--dy', '-50px');
+        
+        document.body.appendChild(miniHeart);
+        
+        setTimeout(() => {
+          if (miniHeart.parentNode) {
+            miniHeart.parentNode.removeChild(miniHeart);
+          }
+        }, 1000);
+      });
+    });
+    
+    // Add some random cute sound effects (visual feedback)
+    function addCuteVisualFeedback() {
+      const feedbacks = ['✨', '💫', '🌟', '💖', '💕', '🥰'];
+      const feedback = document.createElement('div');
+      feedback.innerHTML = feedbacks[Math.floor(Math.random() * feedbacks.length)];
+      feedback.style.cssText = `
+        position: fixed;
+        left: ${Math.random() * window.innerWidth}px;
+        top: ${Math.random() * window.innerHeight}px;
+        font-size: 1.2rem;
+        pointer-events: none;
+        z-index: 15;
+        animation: sparkleFloat 3s ease-out forwards;
+      `;
+      
+      document.body.appendChild(feedback);
+      
+      setTimeout(() => {
+        if (feedback.parentNode) {
+          feedback.parentNode.removeChild(feedback);
+        }
+      }, 3000);
+    }
+    
+    // Random cute visual feedback
+    setInterval(addCuteVisualFeedback, 5000);
+  </script>
+</body>
+</html>
