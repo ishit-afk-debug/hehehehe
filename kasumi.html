@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kasumi - Dreamy Red Spider Lily Bloom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script:wght@400;500;600;700&family=Pacifico&family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      overflow: hidden;
+      position: relative;
+      font-family: 'Great Vibes', cursive, 'Segoe UI', sans-serif;
+      background: 
+        /* Romantic pattern overlay */
+        radial-gradient(circle at 15% 25%, rgba(255, 182, 193, 0.15) 2px, transparent 2px),
+        radial-gradient(circle at 85% 75%, rgba(255, 192, 203, 0.12) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 45% 15%, rgba(255, 228, 225, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 75% 45%, rgba(255, 105, 180, 0.08) 1px, transparent 1px),
+        /* Soft bokeh effects */
+        radial-gradient(ellipse at 20% 80%, rgba(255, 182, 193, 0.3) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 192, 203, 0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 40% 40%, rgba(255, 228, 225, 0.2) 0%, transparent 70%),
+        radial-gradient(ellipse at 60% 80%, rgba(255, 105, 180, 0.15) 0%, transparent 50%),
+        /* Main romantic gradient */
+        linear-gradient(135deg, 
+          #ffeef0 0%, 
+          #ffe4e6 15%, 
+          #ffd6cc 30%, 
+          #ffb3ba 50%, 
+          #ff9aa2 70%, 
+          #ff8a95 85%, 
+          #ff7a8a 100%);
+      background-size: 
+        80px 80px,
+        60px 60px,
+        40px 40px,
+        50px 50px,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        100% 100%;
+      transition: all 1.5s ease-in-out;
+      animation: backgroundShimmer 12s ease-in-out infinite alternate;
+    }
+    
+    @keyframes backgroundShimmer {
+      0% { 
+        filter: brightness(1) saturate(1) hue-rotate(0deg);
+        background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+      }
+      50% {
+        filter: brightness(1.03) saturate(1.05) hue-rotate(2deg);
+        background-position: 10px 10px, -5px -5px, 15px -10px, -8px 12px, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+      }
+      100% { 
+        filter: brightness(1.05) saturate(1.1) hue-rotate(-2deg);
+        background-position: 20px 20px, -10px -10px, 30px -20px, -15px 25px, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+      }
+    }
+    .bg-glow {
+      position: fixed;
+      left: 0; top: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      background: 
+        radial-gradient(circle at 30% 70%, rgba(255, 182, 193, 0.2) 0%, transparent 60%),
+        radial-gradient(circle at 70% 30%, rgba(255, 192, 203, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(255, 228, 225, 0.1) 0%, transparent 80%);
+      animation: bgGlowPulse 6s ease-in-out infinite alternate;
+    }
+    
+    @keyframes bgGlowPulse {
+      from { 
+        opacity: 1;
+        transform: scale(1);
+      }
+      to { 
+        opacity: 0.7;
+        transform: scale(1.05);
+      }
+    }
+    #heart-canvas {
+      position: fixed;
+      left: 0; top: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+      display: block;
+    }
+    .center-content {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      width: 100vw;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .flower {
+      width: 80vw;
+      max-width: 340px;
+      height: auto;
+      min-width: 220px;
+      display: block;
+      margin: 0 auto;
+      opacity: 0;
+      transform: scale(0.7) translateY(40px);
+      filter: 
+        drop-shadow(0 0 40px #ffb6c1aa)
+        drop-shadow(0 0 80px rgba(255, 105, 180, 0.3))
+        drop-shadow(0 0 120px rgba(255, 182, 193, 0.2));
+      animation: flowerBloom 3.5s cubic-bezier(.7,0,.3,1) 0.5s forwards, flowerBreath 4s ease-in-out 4s infinite;
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+    
+    .flower:hover {
+      filter: 
+        drop-shadow(0 0 60px #ffb6c1dd)
+        drop-shadow(0 0 120px rgba(255, 105, 180, 0.5))
+        drop-shadow(0 0 180px rgba(255, 182, 193, 0.4))
+        brightness(1.15);
+      transform: scale(1.02);
+    }
+    
+    @keyframes flowerBloom {
+      0% { opacity: 0; transform: scale(0.7) translateY(40px); }
+      20% { opacity: 1; }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    
+    @keyframes flowerBreath {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.01) translateY(-2px); }
+    }
+    
+    /* Enhanced Spider Lily Petal Animations */
+    .petal {
+      opacity: 0;
+      transform-origin: 160px 340px;
+      animation: petalBloom 2s ease-out forwards, petalSway 6s ease-in-out infinite;
+    }
+    
+    .petal:nth-child(1) { animation-delay: 1.2s, 3.2s; }
+    .petal:nth-child(2) { animation-delay: 1.45s, 3.45s; }
+    .petal:nth-child(3) { animation-delay: 1.7s, 3.7s; }
+    .petal:nth-child(4) { animation-delay: 1.95s, 3.95s; }
+    .petal:nth-child(5) { animation-delay: 2.2s, 4.2s; }
+    .petal:nth-child(6) { animation-delay: 2.45s, 4.45s; }
+    .petal:nth-child(7) { animation-delay: 2.7s, 4.7s; }
+    
+    @keyframes petalBloom {
+      0% { 
+        opacity: 0; 
+        transform: scale(0.3) rotate(-20deg);
+        filter: blur(2px);
+      }
+      30% { 
+        opacity: 0.7; 
+        transform: scale(0.7) rotate(-10deg);
+        filter: blur(1px);
+      }
+      100% { 
+        opacity: 1; 
+        transform: scale(1) rotate(0deg);
+        filter: blur(0px);
+      }
+    }
+    
+    @keyframes petalSway {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.02) rotate(1deg); }
+      75% { transform: scale(0.98) rotate(-1deg); }
+    }
+    
+    /* Enhanced Stamen Animations */
+    .stamen {
+      opacity: 0;
+      transform-origin: 160px 340px;
+      animation: stamenGrow 1.5s ease-out forwards, stamenDance 8s ease-in-out infinite;
+    }
+    
+    .stamen:nth-child(1) { animation-delay: 2.8s, 4.8s; }
+    .stamen:nth-child(2) { animation-delay: 3s, 5s; }
+    .stamen:nth-child(3) { animation-delay: 3.2s, 5.2s; }
+    .stamen:nth-child(4) { animation-delay: 3.4s, 5.4s; }
+    .stamen:nth-child(5) { animation-delay: 3.6s, 5.6s; }
+    .stamen:nth-child(6) { animation-delay: 3.8s, 5.8s; }
+    .stamen:nth-child(7) { animation-delay: 4s, 6s; }
+    
+    @keyframes stamenGrow {
+      0% { 
+        opacity: 0; 
+        transform: scale(0.5) translateY(10px);
+      }
+      50% { 
+        opacity: 0.8; 
+        transform: scale(1.1) translateY(-2px);
+      }
+      100% { 
+        opacity: 1; 
+        transform: scale(1) translateY(0);
+      }
+    }
+    
+    @keyframes stamenDance {
+      0%, 100% { transform: scale(1) translateY(0) rotate(0deg); }
+      25% { transform: scale(1.05) translateY(-1px) rotate(0.5deg); }
+      50% { transform: scale(0.95) translateY(1px) rotate(0deg); }
+      75% { transform: scale(1.02) translateY(-0.5px) rotate(-0.5deg); }
+    }
+    
+    /* Enhanced Sunflower Animations */
+    .sunpetal {
+      opacity: 0;
+      transform-origin: 0px 0px;
+      animation: sunPetalBloom 1.8s ease-out forwards, sunPetalWave 5s ease-in-out infinite;
+    }
+    
+    @keyframes sunPetalBloom {
+      0% { 
+        opacity: 0; 
+        transform: scale(0.2) rotate(-15deg);
+        filter: brightness(0.5);
+      }
+      40% { 
+        opacity: 0.8; 
+        transform: scale(0.8) rotate(-5deg);
+        filter: brightness(0.8);
+      }
+      100% { 
+        opacity: 1; 
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+      }
+    }
+    
+    @keyframes sunPetalWave {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      33% { transform: scale(1.03) rotate(1deg); }
+      66% { transform: scale(0.97) rotate(-0.5deg); }
+    }
+    
+    /* Sunflower Center Animations */
+    #sunflower-left circle:last-child,
+    #sunflower-right circle:last-child {
+      animation: sunCenterPulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes sunCenterPulse {
+      0%, 100% { transform: scale(1); filter: brightness(1); }
+      50% { transform: scale(1.05); filter: brightness(1.1); }
+    }
+    
+    /* Sunflower Tracking Animation (follows cursor subtly) */
+    #sunflower-left {
+      transition: transform 0.8s ease-out;
+      animation: sunflowerSway 12s ease-in-out infinite;
+    }
+    
+    #sunflower-right {
+      transition: transform 0.8s ease-out;
+      animation: sunflowerSwayRight 12s ease-in-out infinite;
+    }
+    
+    @keyframes sunflowerSway {
+      0%, 100% { transform: translate(60px, 370px) scale(0.55) rotate(0deg); }
+      25% { transform: translate(62px, 368px) scale(0.55) rotate(1deg); }
+      50% { transform: translate(60px, 370px) scale(0.55) rotate(0deg); }
+      75% { transform: translate(58px, 372px) scale(0.55) rotate(-1deg); }
+    }
+    
+    @keyframes sunflowerSwayRight {
+      0%, 100% { transform: translate(260px, 390px) scale(0.48) rotate(0deg); }
+      25% { transform: translate(258px, 392px) scale(0.48) rotate(-1deg); }
+      50% { transform: translate(260px, 390px) scale(0.48) rotate(0deg); }
+      75% { transform: translate(262px, 388px) scale(0.48) rotate(1deg); }
+    }
+    
+    /* Pollen Glow Animation */
+    .stamen circle[fill="url(#pollenGlow)"] {
+      animation: pollenGlow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes pollenGlow {
+      0% { opacity: 0.8; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.1); }
+    }
+    .kasumi {
+      font-family: 'Sacramento', 'Great Vibes', cursive, 'Segoe UI', sans-serif;
+      font-size: 3.8em; /* Enhanced size */
+      font-weight: 400;
+      color: #FF69B4;
+      text-align: center;
+      text-shadow: 
+        0 0 20px rgba(255, 105, 180, 0.8),
+        0 0 40px rgba(255, 182, 193, 0.6),
+        0 0 60px rgba(255, 228, 225, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.1);
+      letter-spacing: 0.06em;
+      filter: blur(0.3px);
+      opacity: 0;
+      margin-top: 0.5em;
+      transition: all 1.2s cubic-bezier(.7,0,.3,1);
+      z-index: 10;
+      animation: kasumiAppear 1.5s 4.2s forwards, kasumiPulse 1.5s 5.7s infinite alternate;
+      cursor: default;
+    }
+    
+    .kasumi:hover {
+      transform: scale(1.05);
+      text-shadow: 
+        0 0 25px rgba(255, 105, 180, 1),
+        0 0 50px rgba(255, 182, 193, 0.8),
+        0 0 75px rgba(255, 228, 225, 0.6),
+        2px 2px 6px rgba(0, 0, 0, 0.15);
+    }
+    @keyframes kasumiAppear {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes kasumiPulse {
+      from { 
+        text-shadow: 
+          0 0 20px rgba(255, 105, 180, 0.8),
+          0 0 40px rgba(255, 182, 193, 0.6),
+          0 0 60px rgba(255, 228, 225, 0.4),
+          2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      to { 
+        text-shadow: 
+          0 0 30px rgba(255, 105, 180, 1),
+          0 0 60px rgba(255, 182, 193, 0.8),
+          0 0 90px rgba(255, 228, 225, 0.6),
+          2px 2px 6px rgba(0, 0, 0, 0.15);
+      }
+    }
+    .quote {
+      font-family: 'Dancing Script', 'Great Vibes', cursive, 'Segoe UI', sans-serif;
+      font-size: 1.6em; /* Enhanced size */
+      font-weight: 500;
+      color: #FF69B4;
+      text-align: center;
+      text-shadow: 
+        0 0 15px rgba(255, 105, 180, 0.7),
+        0 0 30px rgba(255, 182, 193, 0.5),
+        0 0 45px rgba(255, 228, 225, 0.3),
+        1px 1px 3px rgba(0, 0, 0, 0.1);
+      filter: blur(0.3px);
+      opacity: 0;
+      margin-top: 1.5em;
+      max-width: 90vw;
+      transition: all 1.5s cubic-bezier(.7,0,.3,1);
+      z-index: 10;
+      animation: quoteAppear 2s 6.2s forwards;
+      cursor: default;
+      line-height: 1.4;
+    }
+    
+    .quote:hover {
+      transform: scale(1.02);
+      text-shadow: 
+        0 0 20px rgba(255, 105, 180, 0.9),
+        0 0 40px rgba(255, 182, 193, 0.7),
+        0 0 60px rgba(255, 228, 225, 0.5),
+        1px 1px 4px rgba(0, 0, 0, 0.15);
+    }
+    @keyframes quoteAppear {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 600px) {
+      .center-content { max-width: 98vw; }
+      .flower { max-width: 90vw; min-width: 120px; }
+      .kasumi { font-size: 2.5em; }
+      .quote { font-size: 1.2em; }
+    }
+    /* Petal and stamen bloom keyframes */
+    .petal, .stamen { opacity: 0; transform: scaleY(0.1) scaleX(0.1) rotate(-30deg); }
+    .petal.bloomed, .stamen.bloomed { opacity: 1; transform: scaleY(1) scaleX(1) rotate(0deg); transition: opacity 0.7s cubic-bezier(.7,0,.3,1), transform 1.5s cubic-bezier(.7,0,.3,1); }
+    .petal { transition: opacity 0.7s cubic-bezier(.7,0,.3,1), transform 1.7s cubic-bezier(.7,0,.3,1); }
+    .stamen { transition: opacity 0.7s cubic-bezier(.7,0,.3,1), transform 1.2s cubic-bezier(.7,0,.3,1); }
+    .sunpetal { opacity: 0; transform: scaleY(0.1) scaleX(0.1) rotate(-30deg); transition: opacity 0.5s cubic-bezier(.7,0,.3,1), transform 1.1s cubic-bezier(.7,0,.3,1); }
+    .sunpetal.bloomed { opacity: 1; transform: scaleY(1) scaleX(1) rotate(0deg); }
+
+    /* 1. Petal gentle wiggle/sway animation */
+    @keyframes petalWiggle {
+      0% { transform: scaleY(0.1) scaleX(0.1) rotate(-30deg); }
+      10% { transform: scaleY(1.05) scaleX(1.05) rotate(-5deg); }
+      20% { transform: scaleY(0.98) scaleX(1.02) rotate(3deg); }
+      30% { transform: scaleY(1.02) scaleX(0.98) rotate(-2deg); }
+      40% { transform: scaleY(1.01) scaleX(1.01) rotate(2deg); }
+      50% { transform: scaleY(1) scaleX(1) rotate(0deg); }
+      100% { transform: scaleY(1) scaleX(1) rotate(0deg); }
+    }
+    .petal.bloomed {
+      animation: petalWiggle 2.2s cubic-bezier(.7,0,.3,1) 1; /* play once on bloom */
+    }
+
+    /* 2. Sparkle particles (glitter dust) */
+    .sparkle {
+      position: absolute;
+      pointer-events: none;
+      z-index: 5;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, #fff 0%, #ffb6c1 50%, rgba(255, 105, 180, 0.8) 70%, transparent 100%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 5;
+      animation: sparkleFloat 4s ease-out forwards;
+      box-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.8),
+        0 0 20px rgba(255, 182, 193, 0.6),
+        0 0 30px rgba(255, 105, 180, 0.4);
+    }
+    @keyframes sparkleFloat {
+      0% { 
+        opacity: 0; 
+        transform: scale(0.3) translateY(0) rotate(0deg); 
+      }
+      15% { 
+        opacity: 1; 
+        transform: scale(1) translateY(-10px) rotate(90deg);
+      }
+      85% { 
+        opacity: 1; 
+        transform: scale(1.1) translateY(-50px) rotate(270deg);
+      }
+      100% { 
+        opacity: 0; 
+        transform: scale(1.5) translateY(-80px) rotate(360deg);
+      }
+    }
+
+    /* 3. Extra heart bokeh (soft, faint) */
+    .bokeh-heart-faint {
+      position: absolute;
+      width: 48px; height: 48px;
+      opacity: 0.09;
+      filter: blur(3px);
+      pointer-events: none;
+      z-index: 2;
+      animation: bokehFloatFaint 16s linear infinite;
+    }
+    @keyframes bokehFloatFaint {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-120vh) scale(1.2); }
+    }
+
+    /* 4. Kasumi typewriter and heartbeat animation */
+    .kasumi {
+      position: relative;
+      font-family: 'Great Vibes', cursive, 'Segoe UI', sans-serif;
+      color: #FF69B4;
+      text-shadow: 0 0 24px #FFB6C1, 0 0 48px #fff6;
+      filter: blur(0.5px);
+      opacity: 0;
+      margin-top: 0.5em;
+      transition: opacity 1.2s cubic-bezier(.7,0,.3,1);
+      z-index: 10;
+      font-size: 3.36em;
+      letter-spacing: 0.04em;
+      animation: kasumiAppear 1.5s 4.2s forwards, kasumiPulse 1.5s 5.7s infinite alternate;
+      /* typewriter effect will be handled by JS */
+    }
+    .kasumi.heartbeat {
+      animation: kasumiAppear 1.5s 4.2s forwards, kasumiPulse 1.5s 5.7s infinite alternate, heartbeat 1.2s 1.5s 2;
+    }
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      20% { transform: scale(1.12); }
+      40% { transform: scale(0.96); }
+      60% { transform: scale(1.08); }
+      80% { transform: scale(0.98); }
+      100% { transform: scale(1); }
+    }
+
+    /* 5. Quote font and zoom-in fade */
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@700&display=swap');
+    .quote {
+      font-family: 'Pacifico', 'Dancing Script', cursive, 'Great Vibes', 'Segoe UI', sans-serif;
+      animation: quoteAppear 2s 6.2s forwards, quoteZoom 2.5s 6.2s forwards;
+    }
+    @keyframes quoteZoom {
+      0% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+
+    /* 6. Subtle glowing/blurred background ellipse */
+    .bg-glow {
+      position: absolute;
+      left: 50%;
+      top: 54%;
+      width: 420px;
+      height: 180px;
+      background: radial-gradient(ellipse at center, #fff6 0%, #ffb6c1 60%, #fff0 100%);
+      filter: blur(32px) brightness(1.1);
+      opacity: 0.45;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .kasumi-pic {
+      display: block;
+      margin: 20px auto 0;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 5px solid #FF69B4;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    }
+    .kasumi-pic.fade-in {
+      opacity: 1;
+      transform: scale(1);
+    }
+  </style>
+</head>
+<body>
+  <img src="kasumi.jpg" alt="Kasumi" class="kasumi-pic" />
+  <div class="romantic-decor"></div>
+  <div class="bg-glow"></div>
+  <div class="floating-hearts" id="floating-hearts"></div>
+  <canvas id="heart-canvas"></canvas>
+  <div id="sparkle-container"></div>
+  <div id="bokeh-faint-container"></div>
+  <div class="center-content">
+    <!-- Realistic Red Spider Lily SVG with Gradients and Elegant Stamens, plus blooming sunflowers on each side -->
+    <svg class="flower" viewBox="0 0 320 480" style="overflow:visible">
+      <defs>
+        <!-- Petal gradient -->
+        <linearGradient id="petalGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ff2a2a"/>
+          <stop offset="60%" stop-color="#b80000"/>
+          <stop offset="100%" stop-color="#7a001a"/>
+        </linearGradient>
+        <!-- Stamen gradient -->
+        <linearGradient id="stamenGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ffb6c1"/>
+          <stop offset="100%" stop-color="#ff69b4"/>
+        </linearGradient>
+        <!-- Glow for pollen tips -->
+        <radialGradient id="pollenGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#fffbe0" stop-opacity="1"/>
+          <stop offset="60%" stop-color="#ffe066" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#fffbe0" stop-opacity="0"/>
+        </radialGradient>
+        <!-- Sunflower gradients -->
+        <radialGradient id="sunPetalGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#fffde4"/>
+          <stop offset="60%" stop-color="#ffe066"/>
+          <stop offset="100%" stop-color="#e6b800"/>
+        </radialGradient>
+        <radialGradient id="sunCenterGradient" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#a67c52"/>
+          <stop offset="100%" stop-color="#5c3a18"/>
+        </radialGradient>
+        <linearGradient id="sunStemGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#7ec850"/>
+          <stop offset="100%" stop-color="#3e7d2c"/>
+        </linearGradient>
+      </defs>
+      <g>
+        <!-- Left Sunflower -->
+        <g id="sunflower-left" transform="translate(60, 370) scale(0.55)">
+          <!-- Stem -->
+          <rect x="-7" y="30" width="14" height="70" rx="7" fill="url(#sunStemGradient)"/>
+          <!-- Leaves -->
+          <ellipse cx="-15" cy="60" rx="12" ry="22" fill="#6bbf59" opacity="0.7"/>
+          <ellipse cx="15" cy="80" rx="10" ry="18" fill="#6bbf59" opacity="0.7"/>
+          <!-- Petals: 12, each in a group for animation -->
+          <g id="sun-petals-left">
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0">
+              <ellipse cx="0" cy="-32" rx="8" ry="28" fill="url(#sunPetalGradient)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.08">
+              <ellipse cx="14" cy="-28" rx="7" ry="24" fill="url(#sunPetalGradient)" transform="rotate(30)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.16">
+              <ellipse cx="24" cy="-14" rx="7" ry="22" fill="url(#sunPetalGradient)" transform="rotate(60)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.24">
+              <ellipse cx="28" cy="0" rx="7" ry="20" fill="url(#sunPetalGradient)" transform="rotate(90)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.32">
+              <ellipse cx="24" cy="14" rx="7" ry="22" fill="url(#sunPetalGradient)" transform="rotate(120)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.40">
+              <ellipse cx="14" cy="28" rx="7" ry="24" fill="url(#sunPetalGradient)" transform="rotate(150)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.48">
+              <ellipse cx="0" cy="32" rx="8" ry="28" fill="url(#sunPetalGradient)" transform="rotate(180)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.56">
+              <ellipse cx="-14" cy="28" rx="7" ry="24" fill="url(#sunPetalGradient)" transform="rotate(210)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.64">
+              <ellipse cx="-24" cy="14" rx="7" ry="22" fill="url(#sunPetalGradient)" transform="rotate(240)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.72">
+              <ellipse cx="-28" cy="0" rx="7" ry="20" fill="url(#sunPetalGradient)" transform="rotate(270)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.80">
+              <ellipse cx="-24" cy="-14" rx="7" ry="22" fill="url(#sunPetalGradient)" transform="rotate(300)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.88">
+              <ellipse cx="-14" cy="-28" rx="7" ry="24" fill="url(#sunPetalGradient)" transform="rotate(330)"/>
+            </g>
+          </g>
+          <!-- Center -->
+          <circle cx="0" cy="0" r="18" fill="url(#sunCenterGradient)"/>
+        </g>
+        <!-- Right Sunflower -->
+        <g id="sunflower-right" transform="translate(260, 390) scale(0.48)">
+          <!-- Stem -->
+          <rect x="-7" y="30" width="14" height="70" rx="7" fill="url(#sunStemGradient)"/>
+          <!-- Leaves -->
+          <ellipse cx="-15" cy="60" rx="12" ry="22" fill="#6bbf59" opacity="0.7"/>
+          <ellipse cx="15" cy="80" rx="10" ry="18" fill="#6bbf59" opacity="0.7"/>
+          <!-- Petals: 12, each in a group for animation -->
+          <g id="sun-petals-right">
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.12">
+              <ellipse cx="0" cy="-32" rx="8" ry="28" fill="url(#sunPetalGradient)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.20">
+              <ellipse cx="14" cy="-28" rx="7" ry="24" fill="url(#sunPetalGradient)" transform="rotate(30)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.28">
+              <ellipse cx="24" cy="-14" rx="7" ry="22" fill="url(#sunPetalGradient)" transform="rotate(60)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.36">
+              <ellipse cx="28" cy="0" rx="7" ry="20" fill="url(#sunPetalGradient)" transform="rotate(90)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.44">
+              <ellipse cx="24" cy="14" rx="7" ry="22" fill="url(#sunPetalGradient)" transform="rotate(120)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.52">
+              <ellipse cx="14" cy="28" rx="7" ry="24" fill="url(#sunPetalGradient)" transform="rotate(150)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.60">
+              <ellipse cx="0" cy="32" rx="8" ry="28" fill="url(#sunPetalGradient)" transform="rotate(180)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.68">
+              <ellipse cx="-14" cy="28" rx="7" ry="24" fill="url(#sunPetalGradient)" transform="rotate(210)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.76">
+              <ellipse cx="-24" cy="14" rx="7" ry="22" fill="url(#sunPetalGradient)" transform="rotate(240)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.84">
+              <ellipse cx="-28" cy="0" rx="7" ry="20" fill="url(#sunPetalGradient)" transform="rotate(270)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="0.92">
+              <ellipse cx="-24" cy="-14" rx="7" ry="22" fill="url(#sunPetalGradient)" transform="rotate(300)"/>
+            </g>
+            <g class="sunpetal" style="transform-origin:0px 0px" data-delay="1.00">
+              <ellipse cx="-14" cy="-28" rx="7" ry="24" fill="url(#sunPetalGradient)" transform="rotate(330)"/>
+            </g>
+          </g>
+          <!-- Center -->
+          <circle cx="0" cy="0" r="18" fill="url(#sunCenterGradient)"/>
+        </g>
+        <!-- Red Spider Lily (centerpiece, unchanged) -->
+        <g>
+          <!-- Stem -->
+          <rect x="153" y="340" width="14" height="90" rx="7" fill="#b22222" opacity="0.7"/>
+          <!-- Petals: 7 natural, curling, gradient petals, each in a group for animation -->
+          <g id="petals">
+            <g class="petal" style="transform-origin:160px 340px" data-delay="0">
+              <path d="M160,340 C150,260 120,180 160,120 C200,60 250,180 180,200 Q170,210 160,340" fill="none" stroke="url(#petalGradient)" stroke-width="7" stroke-linecap="round" opacity="0.95"/>
+            </g>
+            <g class="petal" style="transform-origin:160px 340px" data-delay="0.25">
+              <path d="M160,340 C140,270 80,180 140,110 C200,40 220,200 170,210 Q165,220 160,340" fill="none" stroke="url(#petalGradient)" stroke-width="7" stroke-linecap="round" opacity="0.92"/>
+            </g>
+            <g class="petal" style="transform-origin:160px 340px" data-delay="0.5">
+              <path d="M160,340 C120,300 60,220 120,140 C180,60 200,220 160,230 Q155,240 160,340" fill="none" stroke="url(#petalGradient)" stroke-width="7" stroke-linecap="round" opacity="0.88"/>
+            </g>
+            <g class="petal" style="transform-origin:160px 340px" data-delay="0.75">
+              <path d="M160,340 C180,260 240,180 180,110 C120,40 100,200 150,210 Q155,220 160,340" fill="none" stroke="url(#petalGradient)" stroke-width="7" stroke-linecap="round" opacity="0.92"/>
+            </g>
+            <g class="petal" style="transform-origin:160px 340px" data-delay="1.0">
+              <path d="M160,340 C200,300 260,220 200,140 C140,60 120,220 160,230 Q165,240 160,340" fill="none" stroke="url(#petalGradient)" stroke-width="7" stroke-linecap="round" opacity="0.88"/>
+            </g>
+            <g class="petal" style="transform-origin:160px 340px" data-delay="1.25">
+              <path d="M160,340 C170,270 220,180 170,110 C120,40 80,200 130,210 Q145,220 160,340" fill="none" stroke="url(#petalGradient)" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+            </g>
+            <g class="petal" style="transform-origin:160px 340px" data-delay="1.5">
+              <path d="M160,340 C150,320 100,250 150,170 C200,90 250,250 180,260 Q170,270 160,340" fill="none" stroke="url(#petalGradient)" stroke-width="7" stroke-linecap="round" opacity="0.85"/>
+            </g>
+          </g>
+          <!-- Stamens: 7 elegant, arching, glowing pollen tips -->
+          <g id="stamens">
+            <g class="stamen" style="transform-origin:160px 340px" data-delay="2.0">
+              <path d="M160,340 Q150,200 110,80" stroke="url(#stamenGradient)" stroke-width="2.2" fill="none" opacity="0.8"/>
+              <circle cx="110" cy="80" r="8" fill="url(#pollenGlow)"/>
+              <circle cx="110" cy="80" r="3.5" fill="#ffe066"/>
+            </g>
+            <g class="stamen" style="transform-origin:160px 340px" data-delay="2.2">
+              <path d="M160,340 Q170,180 210,80" stroke="url(#stamenGradient)" stroke-width="2.2" fill="none" opacity="0.8"/>
+              <circle cx="210" cy="80" r="8" fill="url(#pollenGlow)"/>
+              <circle cx="210" cy="80" r="3.5" fill="#ffe066"/>
+            </g>
+            <g class="stamen" style="transform-origin:160px 340px" data-delay="2.4">
+              <path d="M160,340 Q120,160 70,60" stroke="url(#stamenGradient)" stroke-width="2" fill="none" opacity="0.7"/>
+              <circle cx="70" cy="60" r="7" fill="url(#pollenGlow)"/>
+              <circle cx="70" cy="60" r="2.8" fill="#ffe066"/>
+            </g>
+            <g class="stamen" style="transform-origin:160px 340px" data-delay="2.6">
+              <path d="M160,340 Q200,160 250,60" stroke="url(#stamenGradient)" stroke-width="2" fill="none" opacity="0.7"/>
+              <circle cx="250" cy="60" r="7" fill="url(#pollenGlow)"/>
+              <circle cx="250" cy="60" r="2.8" fill="#ffe066"/>
+            </g>
+            <g class="stamen" style="transform-origin:160px 340px" data-delay="2.8">
+              <path d="M160,340 Q100,220 60,120" stroke="url(#stamenGradient)" stroke-width="2" fill="none" opacity="0.6"/>
+              <circle cx="60" cy="120" r="6" fill="url(#pollenGlow)"/>
+              <circle cx="60" cy="120" r="2.2" fill="#ffe066"/>
+            </g>
+            <g class="stamen" style="transform-origin:160px 340px" data-delay="3.0">
+              <path d="M160,340 Q220,220 260,120" stroke="url(#stamenGradient)" stroke-width="2" fill="none" opacity="0.6"/>
+              <circle cx="260" cy="120" r="6" fill="url(#pollenGlow)"/>
+              <circle cx="260" cy="120" r="2.2" fill="#ffe066"/>
+            </g>
+            <g class="stamen" style="transform-origin:160px 340px" data-delay="3.2">
+              <path d="M160,340 Q160,150 160,40" stroke="url(#stamenGradient)" stroke-width="2.2" fill="none" opacity="0.8"/>
+              <circle cx="160" cy="40" r="8" fill="url(#pollenGlow)"/>
+              <circle cx="160" cy="40" r="3.5" fill="#ffe066"/>
+            </g>
+          </g>
+          <!-- Glow -->
+          <ellipse cx="160" cy="340" rx="60" ry="20" fill="#fff6" opacity="0.5"/>
+        </g>
+      </g>
+    </svg>
+    <div class="kasumi">Kasumi</div>
+    <div class="quote">“In every bloom, I find a reason to love you more.”</div>
+  </div>
+  <script>
+    // Heart particle animation using canvas
+    const canvas = document.getElementById('heart-canvas');
+    const ctx = canvas.getContext('2d');
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    function resizeCanvas() {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W;
+      canvas.height = H;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Heart particle shape
+    function drawHeart(x, y, size, color, alpha) {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.translate(x, y);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(0, -size/2, -size, -size/2, -size, 0);
+      ctx.bezierCurveTo(-size, size, 0, size*1.2, 0, size*1.7);
+      ctx.bezierCurveTo(0, size*1.2, size, size, size, 0);
+      ctx.bezierCurveTo(size, -size/2, 0, -size/2, 0, 0);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.shadowColor = color;
+      ctx.shadowBlur = size * 0.7;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    // Particle system
+    const heartColors = [
+      'rgba(255,182,193,0.7)', // light pink
+      'rgba(255,105,180,0.7)', // hot pink
+      'rgba(255,255,255,0.7)', // white
+      'rgba(255,160,180,0.7)', // soft pink
+    ];
+    function randomBetween(a, b) { return a + Math.random() * (b - a); }
+    const heartParticles = [];
+    const heartCount = Math.floor(W/30) + 18;
+    for (let i = 0; i < heartCount; i++) {
+      heartParticles.push({
+        x: randomBetween(0, W),
+        y: randomBetween(H*0.7, H),
+        size: randomBetween(12, 32),
+        speed: randomBetween(0.18, 0.5),
+        drift: randomBetween(-0.2, 0.2),
+        alpha: randomBetween(0.12, 0.32),
+        color: heartColors[Math.floor(Math.random()*heartColors.length)],
+        blur: randomBetween(2, 8),
+        phase: Math.random()*Math.PI*2
+      });
+    }
+    function animateHearts() {
+      ctx.clearRect(0, 0, W, H);
+      for (let h of heartParticles) {
+        drawHeart(h.x, h.y, h.size, h.color, h.alpha);
+        h.y -= h.speed;
+        h.x += Math.sin(Date.now()/900 + h.phase) * h.drift;
+        if (h.y < -40) {
+          h.y = H + 20;
+          h.x = randomBetween(0, W);
+        }
+      }
+      requestAnimationFrame(animateHearts);
+    }
+    animateHearts();
+
+    // Responsive SVG animation fallback for browsers that don't support <animate>
+    function supportsSVGAnimate() {
+      return document.createElementNS &&
+        !!document.createElementNS('http://www.w3.org/2000/svg','animate').beginElement;
+    }
+    // If not supported, just show the flower after a delay
+    if (!supportsSVGAnimate()) {
+      setTimeout(() => {
+        document.querySelector('.flower').style.opacity = 1;
+        document.querySelector('.flower').style.transform = 'scale(1) translateY(0)';
+      }, 800);
+    }
+
+    // Layered, slow, dramatic bloom animation for petals and stamens
+    window.addEventListener('DOMContentLoaded', function() {
+      const petals = document.querySelectorAll('.petal');
+      const stamens = document.querySelectorAll('.stamen');
+      petals.forEach((petal, i) => {
+        const delay = parseFloat(petal.getAttribute('data-delay')) || 0;
+        setTimeout(() => {
+          petal.classList.add('bloomed');
+        }, 1200 + delay * 1000);
+      });
+      stamens.forEach((stamen, i) => {
+        const delay = parseFloat(stamen.getAttribute('data-delay')) || 0;
+        setTimeout(() => {
+          stamen.classList.add('bloomed');
+        }, 1200 + delay * 1000);
+      });
+      // Sunflower petals (left and right)
+      const sunpetals = document.querySelectorAll('.sunpetal');
+      sunpetals.forEach((petal) => {
+        const delay = parseFloat(petal.getAttribute('data-delay')) || 0;
+        setTimeout(() => {
+          petal.classList.add('bloomed');
+        }, 1200 + delay * 1000);
+      });
+    });
+
+    // 2. Sparkle particles (glitter dust) around the flower while it blooms
+    function spawnSparkle(x, y, delay = 0) {
+      const sparkle = document.createElement('div');
+      sparkle.className = 'sparkle';
+      sparkle.style.left = `${x}px`;
+      sparkle.style.top = `${y}px`;
+      sparkle.style.opacity = 0;
+      setTimeout(() => {
+        sparkle.style.opacity = 1;
+      }, delay);
+      document.getElementById('sparkle-container').appendChild(sparkle);
+      setTimeout(() => {
+        sparkle.remove();
+      }, 2800 + delay);
+    }
+    function randomSparkleArea() {
+      // Centered around the flower
+      const flowerRect = document.querySelector('.flower').getBoundingClientRect();
+      const cx = flowerRect.left + flowerRect.width/2;
+      const cy = flowerRect.top + flowerRect.height/2;
+      return {
+        x: cx + (Math.random()-0.5)*flowerRect.width*0.7,
+        y: cy + (Math.random()-0.5)*flowerRect.height*0.7
+      };
+    }
+    function sparkleBurst() {
+      let t = 0;
+      let sparkleInterval = setInterval(() => {
+        for (let i=0; i<2; ++i) {
+          const {x, y} = randomSparkleArea();
+          spawnSparkle(x, y);
+        }
+        t += 1;
+        if (t > 18) clearInterval(sparkleInterval);
+      }, 180);
+    }
+    // 3. Extra faint heart bokeh
+    function spawnFaintBokeh() {
+      const container = document.getElementById('bokeh-faint-container');
+      for (let i = 0; i < 10; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'bokeh-heart-faint';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = (80 + Math.random() * 20) + 'vh';
+        heart.style.animationDelay = (Math.random() * 16) + 's';
+        heart.innerHTML = `<svg width="48" height="48" viewBox="0 0 40 40"><path d="M20 35 Q10 25 5 17 Q0 8 10 5 Q20 2 20 12 Q20 2 30 5 Q40 8 35 17 Q30 25 20 35Z" fill="#ffb6c1" opacity="0.7"/></svg>`;
+        container.appendChild(heart);
+      }
+    }
+    // 4. Kasumi typewriter and heartbeat animation
+    function typewriterEffect(text, el, delay = 90, cb) {
+      el.textContent = '';
+      let i = 0;
+      function type() {
+        if (i <= text.length) {
+          el.textContent = text.slice(0, i);
+          i++;
+          setTimeout(type, delay + Math.random()*40);
+        } else if (cb) {
+          cb();
+        }
+      }
+      type();
+    }
+    // 5. Floating romantic hearts
+    function createFloatingHeart() {
+      const heartsContainer = document.getElementById('floating-hearts');
+      const heart = document.createElement('div');
+      heart.className = 'floating-heart';
+      heart.innerHTML = '♥';
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+      heart.style.animationDelay = Math.random() * 2 + 's';
+      heart.style.fontSize = (Math.random() * 0.8 + 0.8) + 'em';
+      
+      const colors = [
+        'rgba(255, 182, 193, 0.6)',
+        'rgba(255, 192, 203, 0.5)',
+        'rgba(255, 228, 225, 0.7)',
+        'rgba(255, 105, 180, 0.4)'
+      ];
+      heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+      
+      heartsContainer.appendChild(heart);
+      
+      setTimeout(() => {
+        if (heart.parentNode) {
+          heart.parentNode.removeChild(heart);
+        }
+      }, 10000);
+    }
+    
+    // Create floating hearts periodically
+    setInterval(createFloatingHeart, 3000);
+    
+    // 6. Quote zoom/fade-in (handled by CSS, but font loaded)
+    // ---
+    window.addEventListener('DOMContentLoaded', function() {
+      // Existing bloom logic...
+      // (already present)
+      // Sparkles
+      setTimeout(sparkleBurst, 1200); // Start with bloom
+      // Faint bokeh
+      spawnFaintBokeh();
+      // Kasumi typewriter
+      const kasumiEl = document.querySelector('.kasumi');
+      const kasumiText = 'Kasumi';
+      setTimeout(() => {
+        kasumiEl.style.opacity = 1;
+        typewriterEffect(kasumiText, kasumiEl, 110, () => {
+          kasumiEl.classList.add('heartbeat');
+        });
+      }, 4200);
+    });
+  </script>
+</body>
+</html>
